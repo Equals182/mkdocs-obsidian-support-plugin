@@ -22,7 +22,11 @@ class PdfConversion(AbstractConversion):
 
     @override
     def convert(self, syntax_groups: SyntaxGroup, page: Page, depth: int) -> str:
-        base_path = page.canonical_url[:-len(page.url)]
+        try:
+            base_path = page.canonical_url[:-len(page.url)]
+        except AttributeError:
+            # joelvaneenwyk todo - hack to skip invalid pdfs for now
+            base_path = ""
         return self._convert_tags(base_path, *syntax_groups)
 
     def _convert_tags(self, base_path: str, pdf_path: str, tags: str) -> str:
