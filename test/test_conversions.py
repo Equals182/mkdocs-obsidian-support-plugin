@@ -1,5 +1,6 @@
 from contextlib import ExitStack
 
+import os
 import pytest
 from assertpy import assert_that
 from mkdocs.config.defaults import MkDocsConfig
@@ -69,8 +70,9 @@ def test_tag_conversion(test):
 
 def assert_template(conversion_name: str, test: str, conversion: AbstractConversion):
     with ExitStack() as stack:
-        src = stack.enter_context(open(f"markdowns/{conversion_name}/given/{test}.md", 'r'))
-        dest = stack.enter_context(open(f"markdowns/{conversion_name}/expected/{test}.md", 'r'))
+        base_dir = os.path.dirname(__file__)
+        src = stack.enter_context(open(os.path.join(base_dir, f"markdowns/{conversion_name}/given/{test}.md"), 'r'))
+        dest = stack.enter_context(open(os.path.join(base_dir, f"markdowns/{conversion_name}/expected/{test}.md"), 'r'))
         given = src.read()
         expected = dest.read()
 
