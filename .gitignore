@@ -7,4 +7,5 @@ venv/
 docs/.obsidian/
 .obsidian/
 build/
+__pycache__/
 *.pyc
