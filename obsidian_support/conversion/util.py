@@ -15,10 +15,10 @@ class CodeBlockSyntax:
     language: str
 
 
-def get_exclude_indices(markdown: str) -> List[Tuple[int, int]]:
+def get_exclude_indices(markdown: str) -> list[tuple[int, int]]:
     # setup
-    exclude_indices = []
-    code_block_matches = {}
+    exclude_indices: list[tuple[int, int]] = []
+    code_block_matches: dict[int, list[CodeBlockSyntax]] = {}
 
     # step 1
     # get all lines stars with more than three of ` or ~
