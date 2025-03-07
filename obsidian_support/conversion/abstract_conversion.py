@@ -1,4 +1,4 @@
-from abc import *
+from abc import ABCMeta, abstractmethod
 from typing import List
 
 from mkdocs.structure.pages import Page
