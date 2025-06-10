@@ -23,14 +23,14 @@ class PdfConversion(AbstractConversion):
     @override
     def convert(self, syntax_groups: SyntaxGroup, page: Page, depth: int) -> str:
         base_path = ""
-        try:
-            if page.canonical_url is None:
-                base_path = page.url
-            else:
-                base_path = page.canonical_url[:-len(page.url)]
-        except TypeError:
-            # joelvaneenwyk todo - hack to skip invalid pdfs for now
-            base_path = ""
+        # try:
+        #     if page.canonical_url is None:
+        #         base_path = page.url
+        #     else:
+        #         base_path = page.canonical_url[:-len(page.url)]
+        # except TypeError:
+        #     # joelvaneenwyk todo - hack to skip invalid pdfs for now
+        #     base_path = ""
         return self._convert_tags(base_path, *syntax_groups)
 
     def _convert_tags(self, base_path: str, pdf_path: str, tags: str) -> str:
